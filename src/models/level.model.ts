@@ -5,16 +5,15 @@ export class Level extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
+    defaultFn: 'uuidv4',
   })
-  id?: string;
+  id: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  score: number;
-
+  name: string;
 
   constructor(data?: Partial<Level>) {
     super(data);

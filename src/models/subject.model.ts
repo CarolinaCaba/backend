@@ -1,4 +1,4 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Entity, belongsTo, model, property} from '@loopback/repository';
 import {Level} from './level.model';
 
 @model()
@@ -6,18 +6,18 @@ export class Subject extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
+    defaultFn: 'uuidv4',
   })
-  id?: string;
+  id: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  name: number;
+  name: string;
 
   @belongsTo(() => Level, {name: 'level'})
-  level_id: string;
+  levelId: string;
 
   constructor(data?: Partial<Subject>) {
     super(data);

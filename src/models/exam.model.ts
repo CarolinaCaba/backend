@@ -1,15 +1,15 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
-import {User} from './user.model';
+import {Entity, belongsTo, model, property} from '@loopback/repository';
 import {Subject} from './subject.model';
+import {User} from './user.model';
 
 @model()
 export class Exam extends Entity {
   @property({
     type: 'string',
     id: true,
-    generated: true,
+    defaultFn: 'uuidv4',
   })
-  id?: string;
+  id: string;
 
   @property({
     type: 'number',
@@ -18,13 +18,13 @@ export class Exam extends Entity {
   score: number;
 
   @belongsTo(() => User, {name: 'student'})
-  student_id: string;
+  studentId: string;
 
   @belongsTo(() => User, {name: 'teacher'})
-  teacher_id: string;
+  teacherId: string;
 
   @belongsTo(() => Subject, {name: 'subject'})
-  subject_id: string;
+  subjectId: string;
 
   constructor(data?: Partial<Exam>) {
     super(data);
